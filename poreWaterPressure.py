@@ -97,11 +97,18 @@ for m in 1, 2, 3:
      EPP += P[m-1]/(1-2*nu) * ( ( 1-2*nu-alpha ) * C1[m-1]*np.exp(m*k0*z) + ( np.power(delta[m-1],2) - np.power(m,2)*np.power(k0,2) )/( m*k0 ) * ( 1-2*nu )*C2[m-1]*np.exp(delta[m-1]*z) ) * np.exp( (m*( k0*x - omega*t ))*1j )
      
 plt.plot(t, EPP)
+# plot initial vertical effective stress
+y_position = (gamma_s - gamma_w)*z
+plt.axhline(y_position, color='red', linestyle='--', label=r'$\sigma_{z0}^\prime$ (Pa)')
+
 plt.show()
 
-plt.title('H' + "%.3f"%H + 'T' + "%.3f"%T + 'h' + "%.3f"%h + "_EPP at z = " + "%.3f"%z)
+plt.title('H' + "%.3f"%H + 'T' + "%.3f"%T + 'h' + "%.3f"%h + "_EPP at z = " + "%.3f"%z + "m")
+
 plt.xlabel('Time (s)')
 plt.ylabel('EPP (Pa)')
+
+plt.legend(loc='upper right')
 
 file_name = 'H' + "%.3f"%H + 'T' + "%.3f"%T + 'h' + "%.3f"%h + "_EPP at z = " + "%.3f"%z
 plt.savefig(f'{file_name}.png', dpi=600)
